@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: dd9e5cfdf94fd43d5badcc18daa9a4cf
+timeCreated: 1498016210
+licenseType: Pro
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Cartoony Cute
+  fontNames:
+  - Cartoony Cute
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
