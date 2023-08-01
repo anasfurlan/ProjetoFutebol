@@ -12,7 +12,7 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private GameObject losePainel, winPainel, pausePainel;
     [SerializeField]
-    private Button pauseBtn, pauseBtn_Return;
+    private Button pauseBtn, pauseBtn_Return, menuFasesBtn;
     [SerializeField]
     private Button btnNovamenteLose, btnLevelLose; // Botões Lose
     private Button btnLevelWin, btnNovamenteWin, btnAvancaWin; //Botões Win
@@ -45,7 +45,7 @@ public class UIManager : MonoBehaviour
 
     void PegaDados()
     {
-        if(OndeEstou.instance.fase != 4 && OndeEstou.instance.fase != 5)
+        if(OndeEstou.instance.fase != 0 && OndeEstou.instance.fase != 1 && OndeEstou.instance.fase != 2)
         {
         //Elementos UI pontos e bolas
         pontosUI = GameObject.Find ("PontosUI").GetComponent<TextMeshProUGUI> ();
@@ -57,6 +57,8 @@ public class UIManager : MonoBehaviour
         //Botões Pause
         pauseBtn = GameObject.Find ("Pause").GetComponent<Button> ();
         pauseBtn_Return = GameObject.Find ("pause").GetComponent<Button> ();
+        menuFasesBtn = GameObject.Find ("Menu_Fases").GetComponent<Button> ();
+
         //Botões Lose
         btnNovamenteLose = GameObject.Find ("NovamenteLOSE").GetComponent<Button> ();
         btnLevelLose = GameObject.Find ("MenuFasesLOSE").GetComponent<Button> ();
@@ -70,6 +72,7 @@ public class UIManager : MonoBehaviour
         //Eventos Pause
         pauseBtn.onClick.AddListener (Pause); //pausa a cena
         pauseBtn_Return.onClick.AddListener (PauseReturn);
+        menuFasesBtn.onClick.AddListener (Levels);
 
         //Eventos You Lose
         btnNovamenteLose.onClick.AddListener (JogarNovamente);
@@ -166,12 +169,12 @@ public class UIManager : MonoBehaviour
             resultado = moedasNumDepois - moedasNumAntes;
             ScoreManager.instance.PerdeMoedas (resultado);
             resultado = 0;
-            SceneManager.LoadScene (4);
+            SceneManager.LoadScene (1);
         }
         else
         {
             resultado = 0;
-            SceneManager.LoadScene (4);
+            SceneManager.LoadScene (1);
         }
     }
 

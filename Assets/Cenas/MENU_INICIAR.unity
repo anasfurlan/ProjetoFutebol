@@ -366,7 +366,7 @@ MonoBehaviour:
   UiManagerGo: {fileID: 6727747990654270470, guid: 8f49ad22bac8b41c9b1bf21ca321495f, type: 3}
   GameManagerGo: {fileID: 3009095571598561763, guid: dab351c991651480098b7f844fb2a48f, type: 3}
   bolaEmUso: 0
-  aspect: 1.66
+  aspect: 1.78
 --- !u!4 &185781001
 Transform:
   m_ObjectHideFlags: 0

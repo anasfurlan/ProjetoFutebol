@@ -270,5 +270,8 @@ MonoBehaviour:
   zRotate: 0
   liberaRot: 0
   liberaTiro: 0
+  chutou: 0
+  velocidadeMinima: 0.5
   force: 0
   seta2Img: {fileID: 0}
+  MorteBolaAnim: {fileID: 0}

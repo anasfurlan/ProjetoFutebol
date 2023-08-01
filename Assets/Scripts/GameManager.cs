@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
     public bool jogoComecou;
     private bool chuteDado;
 
+    private bool adsUmaVez = false;
+
     void Awake()
     {
         if(instance == null)
@@ -40,7 +42,7 @@ public class GameManager : MonoBehaviour
 
      void Carrega(Scene cena, LoadSceneMode modo)
     {
-        if(OndeEstou.instance.fase != 4 && OndeEstou.instance.fase != 5)
+        if(OndeEstou.instance.fase != 0 && OndeEstou.instance.fase != 1 && OndeEstou.instance.fase != 2)
         {
         //aqui coloca o que estamos buscando dentro da cena
         pos = GameObject.Find ("posStart").GetComponent<Transform> ();
@@ -105,6 +107,11 @@ public class GameManager : MonoBehaviour
     {
         UIManager.instance.GameOverUI ();
         jogoComecou = false;
+        if(adsUmaVez == false)
+        {
+            //AdsUnity.instance.showAds ();
+            adsUmaVez = true;
+        }
     }
 
     void WinGame()
@@ -120,6 +127,7 @@ public class GameManager : MonoBehaviour
         bolasEmCena = 0;
         win = false;
         UIManager.instance.StartUI ();
+        adsUmaVez = false;
         
     }
 

@@ -861,7 +861,7 @@ MonoBehaviour:
     bolasPreco: 500
     bolasComprou: 1
   - bolasID: 2
-    bolasNomeSprite: Brasil
+    bolasNomeSprite: Argentina
     bolasPreco: 1500
     bolasComprou: 0
   - bolasID: 3
@@ -869,7 +869,7 @@ MonoBehaviour:
     bolasPreco: 1500
     bolasComprou: 0
   - bolasID: 4
-    bolasNomeSprite: Argentina
+    bolasNomeSprite: Brasil
     bolasPreco: 2000
     bolasComprou: 0
   - bolasID: 5

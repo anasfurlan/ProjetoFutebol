@@ -12,8 +12,8 @@ public class BolaControl : MonoBehaviour
     public float zRotate;
     public bool liberaRot = false;
     public bool liberaTiro = false;
-    //public bool chutou = false;
-    //public float velocidadeMinima = 0.5f;
+    public bool chutou = false;
+    public float velocidadeMinima = 0.5f;
 
     // forca
     private Rigidbody2D bola;
@@ -24,11 +24,11 @@ public class BolaControl : MonoBehaviour
     private Transform paredeLD,paredeLE;
 
     //Morte Bola Anim
-    //[SerializeField]
-    //private GameObject MorteBolaAnim;
+    [SerializeField]
+    private GameObject MorteBolaAnim;
 
     //toque
-    //private Collider2D toqueCol;
+    private Collider2D toqueCol;
 
 
     void Awake()
@@ -64,21 +64,21 @@ public class BolaControl : MonoBehaviour
         Paredes ();
 
         //bola parada destruir
-        /*DestroiBolaParada();
+        DestroiBolaParada();
 
-         if (Input.GetKeyDown(KeyCode.R))
+         /*if (Input.GetKeyDown(KeyCode.R))
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene(1);
         }*/
     }
 
-   /*  void DestroiBolaParada()
+    void DestroiBolaParada()
     {
         if (chutou && bola.velocity.magnitude <= velocidadeMinima)
         {
             DestroiBola();
         }
-    }*/
+    }
 
     void PosicionaSeta()
     {
@@ -140,8 +140,7 @@ public class BolaControl : MonoBehaviour
             liberaRot = true;
             setaGo.GetComponent<Image> ().enabled = true;
             seta2Img.GetComponent<Image> ().enabled = true;
-
-            //toqueCol = GameObject.FindGameObjectWithTag("bola").GetComponentInChildren<Collider2D>();
+            toqueCol = GameObject.FindGameObjectWithTag("bola").GetComponentInChildren<Collider2D>();
         }
        
     }
@@ -158,7 +157,9 @@ public class BolaControl : MonoBehaviour
             seta2Img.GetComponent<Image> ().fillAmount = 0;
             AudioManager.instance.SonsFXToca (1);
             GameManager.instance.tiro = 1;
-            //toqueCol.enabled = false;
+            toqueCol.enabled = false;
+            
+            
         }
         
     }
@@ -167,13 +168,13 @@ public class BolaControl : MonoBehaviour
     void AplicaForca()
     {
         //cos significa coceno e sin seno
-        float x = force + Mathf.Cos (zRotate * Mathf.Deg2Rad);
-        float y = force + Mathf.Sin (zRotate * Mathf.Deg2Rad);
+        float x = force * Mathf.Cos (zRotate * Mathf.Deg2Rad);
+        float y = force * Mathf.Sin (zRotate * Mathf.Deg2Rad);
 
         if(liberaTiro == true)
         {
             bola.AddForce(new Vector2 (x,y));
-           // StartCoroutine(DelayChute()); // Start Corrotina verificação bola parada !!!
+            StartCoroutine(DelayChute()); // Start Corrotina verificação bola parada !!!
             liberaTiro = false;
         }
     }
@@ -224,7 +225,7 @@ public class BolaControl : MonoBehaviour
     {
         if(outro.gameObject.CompareTag("morte"))
         {
-            //Instantiate (MorteBolaAnim, transform.position, Quaternion.identity);
+            Instantiate (MorteBolaAnim, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
             GameManager.instance.bolasEmCena -= 1;
             GameManager.instance.bolasNum -= 1;
@@ -233,13 +234,13 @@ public class BolaControl : MonoBehaviour
         if(outro.gameObject.CompareTag("win"))
         {
             GameManager.instance.win = true;
-            int temp = OndeEstou.instance.fase - 1;
-            //temp++;
+            int temp = OndeEstou.instance.fase - 2;
+            temp++;
             PlayerPrefs.SetInt ("Level" + temp, 1);
         }
     }
 
-   /* IEnumerator DelayChute()
+    IEnumerator DelayChute()
     {
         yield return new WaitForSeconds(0.1f);
         chutou = true;
@@ -250,5 +251,6 @@ public class BolaControl : MonoBehaviour
         GameManager.instance.bolasEmCena -= 1;
         GameManager.instance.bolasNum -= 1;
         Destroy(this.gameObject);
-    }*/
+    }
+
 }
